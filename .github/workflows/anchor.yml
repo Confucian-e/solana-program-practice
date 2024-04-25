@@ -13,7 +13,7 @@ env:
 jobs:
 
   setup:
-    name: Setup Solana, Anchor, Rust and Yarn
+    name: Setup Environment
     runs-on: ubuntu-latest
     
     steps:
@@ -35,6 +35,9 @@ jobs:
       
     - name: Install Anchor
       run: cargo install --git https://github.com/coral-xyz/anchor --tag ${{ env.ANCHOR_VERSION }} anchor-cli --locked
+
+    - name: Add Anchor to PATH
+      run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
       
   build:
     needs: setup
