@@ -13,7 +13,7 @@ env:
 jobs:
 
   setup:
-    name: Anchor Build
+    name: Build
     runs-on: ubuntu-latest
     
     steps:
@@ -22,10 +22,10 @@ jobs:
     - name: Install Solana
       run: |
         sh -c "$(curl -sSfL https://release.solana.com/${{ env.SOLANA_VERSION }}/install)"
-        export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+        echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
       
     - name: Install Anchor
       run: cargo install --git https://github.com/coral-xyz/anchor --tag ${{ env.ANCHOR_VERSION }} anchor-cli --locked
 
-    - name: Build
+    - name: Anchor Build
       run: anchor build
