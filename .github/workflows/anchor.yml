@@ -31,9 +31,6 @@ jobs:
       run: |
         sh -c "$(curl -sSfL https://release.solana.com/${{ env.SOLANA_VERSION }}/install)"
         echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
-
-    - name: Generate Solana Keypair
-      run: solana-keygen new
       
     # - name: Install Yarn
     #   run: npm install -g yarn
