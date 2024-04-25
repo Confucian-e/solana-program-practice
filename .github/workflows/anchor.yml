@@ -28,7 +28,9 @@ jobs:
         node-version: 18
         
     - name: Install Solana
-      run: sh -c "$(curl -sSfL https://release.solana.com/${{ env.SOLANA_VERSION }}/install)"
+      run: |
+        sh -c "$(curl -sSfL https://release.solana.com/${{ env.SOLANA_VERSION }}/install)"
+        echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
       
     - name: Install Yarn
       run: npm install -g yarn
