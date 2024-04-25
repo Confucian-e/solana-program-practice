@@ -1,0 +1,31 @@
+name: Anchor
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  SOLANA_VERSION: v1.18.8
+  ANCHOR_VERSION: v0.30.0
+
+jobs:
+
+  setup:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+        
+    - name: Install Solana
+      run: |
+        sh -c "$(curl -sSfL https://release.solana.com/${{ env.SOLANA_VERSION }}/install)"
+        echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+      
+    - name: Install Anchor
+      run: cargo install --git https://github.com/coral-xyz/anchor --tag ${{ env.ANCHOR_VERSION }} anchor-cli --locked
+
+    - name: Anchor Build
+      run: anchor build
