@@ -35,23 +35,32 @@ jobs:
       
     - name: Install Anchor
       run: cargo install --git https://github.com/coral-xyz/anchor --tag ${{ env.ANCHOR_VERSION }} anchor-cli --locked
-      
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    
+    - name: Check Installation
+      run: anchor --version
+
     - name: Build
-      run: $HOME/.cargo/bin/anchor build
+      run: anchor build
 
-  test:
-    needs: setup  
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-        
     - name: Test
-      run: $HOME/.cargo/bin/anchor test
+      run: anchor test
+      
+  # build:
+  #   needs: setup
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v3
+    
+  #   - name: Build
+  #     run: $HOME/.cargo/bin/anchor build
+
+  # test:
+  #   needs: setup  
+  #   runs-on: ubuntu-latest
+    
+  #   steps:
+  #   - uses: actions/checkout@v3
+        
+  #   - name: Test
+  #     run: $HOME/.cargo/bin/anchor test
