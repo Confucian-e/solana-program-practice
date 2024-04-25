@@ -13,53 +13,19 @@ env:
 jobs:
 
   setup:
-    name: Setup Environment
+    name: Anchor Build
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v4
-    
-    # - uses: actions-rs/toolchain@v1
-    #   with:
-    #     toolchain: stable
-        
-    # - uses: actions/setup-node@v3
-    #   with:
-    #     node-version: 18
         
     - name: Install Solana
       run: |
         sh -c "$(curl -sSfL https://release.solana.com/${{ env.SOLANA_VERSION }}/install)"
-        echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
-      
-    # - name: Install Yarn
-    #   run: npm install -g yarn
+        export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
       
     - name: Install Anchor
       run: cargo install --git https://github.com/coral-xyz/anchor --tag ${{ env.ANCHOR_VERSION }} anchor-cli --locked
 
-    - name: Check Installation
-      run: anchor --version
-
     - name: Build
       run: anchor build
-      
-  # build:
-  #   needs: setup
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - uses: actions/checkout@v3
-    
-  #   - name: Build
-  #     run: $HOME/.cargo/bin/anchor build
-
-  # test:
-  #   needs: setup  
-  #   runs-on: ubuntu-latest
-    
-  #   steps:
-  #   - uses: actions/checkout@v3
-        
-  #   - name: Test
-  #     run: $HOME/.cargo/bin/anchor test
