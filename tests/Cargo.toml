@@ -7,3 +7,4 @@ edition = "2021"
 [dependencies]
 anchor-client = "0.30.0"
 solana-program-practice = { version = "0.1.0", path = "../programs/solana-program-practice" }
+counter = { version = "0.1.0", path = "../programs/counter" }
