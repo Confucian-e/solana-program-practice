@@ -35,9 +35,6 @@ jobs:
       
     - name: Install Anchor
       run: cargo install --git https://github.com/coral-xyz/anchor --tag ${{ env.ANCHOR_VERSION }} anchor-cli --locked
-
-    - name: Add Anchor to PATH
-      run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
       
   build:
     needs: setup
@@ -47,7 +44,7 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build
-      run: anchor build
+      run: $HOME/.cargo/bin/anchor build
 
   test:
     needs: setup  
@@ -57,4 +54,4 @@ jobs:
     - uses: actions/checkout@v3
         
     - name: Test
-      run: anchor test
+      run: $HOME/.cargo/bin/anchor test
