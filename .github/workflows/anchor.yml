@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: metadaoproject/setup-anchor@v2
+    - uses: metadaoproject/setup-anchor@main
       with:
         anchor-version: ${{ env.ANCHOR_VERSION }}
         solana-cli-version: ${{ env.SOLANA_VERSION }}
