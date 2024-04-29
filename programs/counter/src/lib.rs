@@ -24,10 +24,10 @@ pub mod counter {
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(
-        init, 
+        init,
         seeds = [b"counter"],
         bump,
-        payer = signer, 
+        payer = signer,
         space = 8 + std::mem::size_of::<Counter>()
     )]
     pub counter: Account<'info, Counter>,
