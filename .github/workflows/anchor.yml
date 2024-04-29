@@ -18,6 +18,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: fmt
+      run: cargo fmt --all -- --check
+
+    - name: clippy
+      run: cargo clippy -- -D warnings
+
     - uses: metadaoproject/setup-anchor@main
       with:
         anchor-version: ${{ env.ANCHOR_VERSION }}
