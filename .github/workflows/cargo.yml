@@ -1,0 +1,27 @@
+name: Cargo
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  format:
+    name: format
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: fmt
+      run: cargo fmt --all -- --check
+
+  clippy:
+    name: clippy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: clippy
+      run: cargo clippy -- -D warnings
