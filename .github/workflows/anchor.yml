@@ -11,8 +11,8 @@ env:
 
 jobs:
 
-  setup:
-    name: Build
+  build:
+    name: build
     runs-on: ubuntu-latest
     
     steps:
